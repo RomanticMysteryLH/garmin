@@ -22,6 +22,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Debug Secrets
+        run: |
+          echo "Email Length: ${#RQ_EMAIL}"
+          echo "Password Length: ${#RQ_PASSWORD}"
+          echo "AES Key Length: ${#AESKEY}"
       - name: Run RQ Sigin Sync
         run: |
           python scripts/rq_sgin.py --email=${{ secrets.RQ_EMAIL }} --password=${{ secrets.RQ_PASSWORD }} --AESKEY=${{ secrets.AESKEY }}
