@@ -80,7 +80,6 @@ def isKeyValid(aesChiper, text):
 async def rq_sigin(email, password, AES_KEY):
     aesChiper = AESCipher(AES_KEY)
     # rq_login = RqLogin(email,password)
-    print(email,password)
     rq_connect = RQConnect(email, password, rqdbpath)
     with SqliteDB(rqdbpath) as db:
         ## 查询数据库是否存在已保存的帐号信息
@@ -130,7 +129,7 @@ async def rq_sigin(email, password, AES_KEY):
             )
             await rqs.sigin()
         else:
-            print("帐号密码有误，请检查帐号密码信息！！！")
+            print("帐号密码有误，请检查帐号密码信息！！！",email,password)
 
 ## 初始化建表
 def initRQDB(rqdbpath):
